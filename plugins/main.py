@@ -772,35 +772,16 @@ async def caption(bot, message):
                 tz += "#پنجم"
             elif "6" in Jn:
                 tz += "#ششم"
-            if X is None:
-                Ghi = m.split(f"{bul}")[-2]
-                X = Ghi.rsplit(' ', 1)[0]
-                Ee = Ghi.rsplit(' ', 1)[1]
-                Lo += f"#{X.replace(' ', '_')}"
-            else:
-                Yd = X.replace(" ", "_")
-                Lo += "#" + f"{Yd}"
-                V = m.replace(f"{X}", "")
-                Ee = V.split(f"{bul}", -1)[0]
-            
             Tzz = tz.replace("#", "")
             date = " "
-            if Ee is None:
-                try:
-                    for i in Lo.split('_'):
-                        if i.isdigit():
-                            Ee = i
-                except:
-                    pass
-            try:
-                looo = PTN.parse(Lo)
-                Lo = f"{looo['title']}"
-                if fa==" ":
-                    hggg, fa = serial_name(Lo)
-            except:
-                if Ee is not None:
-                    Lo = Lo.replace(f"_{Ee}")
-                pass
+            Uik = m.replace('-', ' ').replace("_", " ").replace('  ', ' ')
+            Tyy = PTN.parse(m.replace('-', ' ').replace(".", " ").replace('  ', ' '))
+            Rrt = Tyy['title']
+            Lo, fa = serial_name(Rrt)
+            Ee = Uik.split(Lo)[1]
+            Ee = Ee.split(" ")[1] if Ee.split(" ")[1].isdigit() else ""
+            Lo = "#"+Lo.replace(' ', '_')
+
             if "Alparslan Buyuk Selcuklu" in m:
                 date += "سه شنبه ساعت 2:30 بامداد از رسانه اینترنتی دی ال مکوین"
             if "Ask Mantik Intikam" in m:
