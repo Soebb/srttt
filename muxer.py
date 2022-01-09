@@ -80,7 +80,7 @@ async def hardmux(client, message):
 
     if "cancel" in message.text:
         try:
-            os.remove(Config.DOWNLOAD_DIR+'/'+og_vid_filename.split('.')[:-1]+'1.mp4')
+            os.remove(Config.DOWNLOAD_DIR+'/'+'.'.join(og_vid_filename.split('.')[:-1])+'1.mp4')
         except:
             await message.reply("can't cancel! maybe didn't any progress in process.")
         else:
