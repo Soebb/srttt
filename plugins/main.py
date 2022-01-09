@@ -942,7 +942,7 @@ async def caption(bot, message):
                 Fuc = f"{Fucc}{q.replace('  ', ' ')} \n🆔👉 @dlmacvin_new | {fa}"
                 msg = await message.edit(Fuc)
             else:
-                if "O Ses Turkiye" in m:
+                if m.__contains__("O Ses Turkiye") or m.__contains__("Maske Kimsin Sen"):
                     Fucc += f"♨️مسابقه{fa} ( {n}) بازیرنویس چسبیده\n👌قسمت : {E.replace('Hard-Sub', '')}"
                     Fuc = f"{Fucc}{q.replace('  ', ' ')} \n🔻تماشای آنلاین بدون فیلتر شکن: \n🆔👉 @dlmacvin_new"
                     msg = await message.edit(Fuc)
