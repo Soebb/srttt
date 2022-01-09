@@ -75,16 +75,18 @@ async def softmux(client, message):
 
 @Client.on_message(filters.command(['hardmux', 'cancel']) & check_user & filters.private)
 async def hardmux(client, message):
+    chat_id = message.from_user.id
+    og_vid_filename = db.get_vid_filename(chat_id)
+
     if "cancel" in message.text:
         try:
-            os.remove(Config.DOWNLOAD_DIR+'/'+og_vid_filename)
+            os.remove(Config.DOWNLOAD_DIR+'/'+og_vid_filename.split('.')[:-1]+'1.mp4')
         except:
             await message.reply("can't cancel! maybe didn't any progress in process.")
         else:
             await message.reply("canceled.")
         return
-    chat_id = message.from_user.id
-    og_vid_filename = db.get_vid_filename(chat_id)
+
     og_sub_filename = db.get_sub_filename(chat_id)
     text = ''
     if not og_vid_filename :
