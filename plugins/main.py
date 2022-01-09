@@ -776,15 +776,7 @@ async def caption(bot, message):
                 Ghi = m.split(f"{bul}")[-2]
                 X = Ghi.rsplit(' ', 1)[0]
                 Ee = Ghi.rsplit(' ', 1)[1]
-                
-                print(f"X = {X}")
-                
-                print(f"Ee = {Ee}")
-                # X = X.replace(' ', '_')
-                # if X.startswith("_"):
-                    # X = X.split("_", 1)[1]
                 Lo += f"#{X.replace(' ', '_')}"
-            # if (X is not None) and (X.__contains__("a") or X.__contains__("o") or X.__contains__("i") or X.__contains__("c") or X.__contains__("b") or X.__contains__("e") or X.__contains__("l") or X.__contains__("n") or X.__contains__("m")):
             else:
                 Yd = X.replace(" ", "_")
                 Lo += "#" + f"{Yd}"
@@ -793,7 +785,22 @@ async def caption(bot, message):
             
             Tzz = tz.replace("#", "")
             date = " "
-
+            if Ee is None:
+                try:
+                    for i in Lo.split('_'):
+                        if i.isdigit():
+                            Ee = i
+                except:
+                    pass
+            try:
+                looo = PTN.parse(Lo)
+                Lo = f"{looo['title']}"
+                if fa==" ":
+                    hggg, fa = serial_name(Lo)
+            except:
+                if Ee is not None:
+                    Lo = Lo.replace(f"_{Ee}")
+                pass
             if "Alparslan Buyuk Selcuklu" in m:
                 date += "سه شنبه ساعت 2:30 بامداد از رسانه اینترنتی دی ال مکوین"
             if "Ask Mantik Intikam" in m:
