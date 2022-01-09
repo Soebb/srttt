@@ -2,3 +2,5 @@ pyrogram
 tgcrypto
 requests
 pysubs2
+parse-torrent-name
+pyromod
