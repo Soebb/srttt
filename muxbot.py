@@ -8,7 +8,6 @@ logging.basicConfig(level = logging.DEBUG,
 logger = logging.getLogger(__name__)
 
 import os
-import pyromod.listen
 from config import Config
 
 from helper_func.dbhelper import Database as Db
