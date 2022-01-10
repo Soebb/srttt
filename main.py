@@ -106,11 +106,11 @@ async def callback(bot, update):
         title = n['title'].replace("-", " ")
         au2_1 = f'C:/All Projact Primer Pro/Audio Sound Serial Primer Pro Tag/{title}/2.1.mp3'
         
-        t2t = await update.message.reply_text('تایم صوت 2 (2.2 + 2.1) رو بفرست')
+        t2t = await update.message.reply_text('تایم واسه تگ صوت 2 (2.2 + 2.1) رو بفرست')
         t22: Message = await bot.listen(m.chat.id, filters=filters.text)
-        t3t = await update.message.reply_text('تایم صوت 3 رو بفرست\n3.mp3')
+        t3t = await update.message.reply_text('پنج تا تایم واسه تگ صوت سوم رو بفرست\n3.mp3')
         t33: Message = await bot.listen(m.chat.id, filters=filters.text)
-        t6t = await update.message.reply_text('تایم صوت 6 رو بفرست\n6.mp3')
+        t6t = await update.message.reply_text('تایم واسه تگ صوت 6 رو بفرست\n6.mp3')
         t66: Message = await bot.listen(m.chat.id, filters=filters.text)
         t2 = int(gettime(t22.text))
         t3_1, t3_2, t3_3, t3_4, t3_5 = t33.text.split()
