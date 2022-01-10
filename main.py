@@ -83,14 +83,12 @@ async def callback(bot, update):
         keyboard.append(refresh_button)
         await update.message.edit(text="Which one?", reply_markup=InlineKeyboardMarkup(keyboard))
         return
-
-    if not os.path.isdir('temp/'):
-        os.makedirs('temp/')
+    tmp = 'khorooji_voicetag/'
+    if not os.path.isdir(tmp):
+        os.makedirs(tmp)
     input = folder + "/" + update.data
     try:
-        #v = folder + '/' + vname
-        #vname = vname.replace('.ts', '.mp4')
-        
+        vname = update.data.replace('.ts', '.mp4')
         n = PTN.parse(vname)
         title = n['title'].replace("-", " ")
         au2_1 = f'C:/All Projact Primer Pro/Audio Sound Serial Primer Pro Tag/{title}/2.1.mp3'
@@ -111,7 +109,7 @@ async def callback(bot, update):
         t6 = int(gettime(t66.text))
         prccs=await update.message.reply_text("processing..")
         os.system(f'ffmpeg -i "{au2_1}" -i 2.2.mp3 -y 2.mp3')
-        os.system(f'ffmpeg -i "{file}" -vn -i {a1} -vn -i {a2} -vn -i {a3} -vn -i {a6} -vn -filter_complex "[1]adelay=00000|00000[b]; [2]adelay={t2}|{t2}[c]; [3]adelay={t3_1}|{t3_1}[d]; [3]adelay={t3_2}|{t3_2}[e]; [3]adelay={t3_3}|{t3_3}[f]; [3]adelay={t3_4}|{t3_4}[g]; [3]adelay={t3_5}|{t3_5}[h]; [4]adelay={t6}|{t6}[i]; [0][b][c][d][e][f][g][h][i]amix=9" -c:a aac -b:a 125k -y {aac}')   
+        os.system(f'ffmpeg -i "{input}" -vn -i {a1} -vn -i {a2} -vn -i {a3} -vn -i {a6} -vn -filter_complex "[1]adelay=00000|00000[b]; [2]adelay={t2}|{t2}[c]; [3]adelay={t3_1}|{t3_1}[d]; [3]adelay={t3_2}|{t3_2}[e]; [3]adelay={t3_3}|{t3_3}[f]; [3]adelay={t3_4}|{t3_4}[g]; [3]adelay={t3_5}|{t3_5}[h]; [4]adelay={t6}|{t6}[i]; [0][b][c][d][e][f][g][h][i]amix=9" -c:a aac -b:a 125k -y {aac}')   
         time.sleep(10)
         #os.system(f'ffmpeg -i "{file}" -i {aac} -c copy -map 0:0 -map 1:0 -y "{vname}"')
         await m.reply_audio(audio=aac)
