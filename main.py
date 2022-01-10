@@ -17,7 +17,12 @@ a6 = '6.mp3'
 aac = 'a2.aac'
 main = folder.rsplit('/', 1)[1] + '\\'
 
-
+refresh_button = [
+    InlineKeyboardButton(
+        text='Refresh List',
+        callback_data='refresh'
+    )
+]
 def gettime(t2):
     try:
         tt2 = t2.split('.')[1]
