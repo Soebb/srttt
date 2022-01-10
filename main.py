@@ -38,7 +38,7 @@ def gettime(t2):
         t2 = f'{t2}000'
     return t2
 
-@bot.on_message(filters.text & filters.regex('/voicetag'))
+@Client.on_message(filters.text & filters.regex('/voicetag'))
 async def start(bot, m):
     keyboard = []
     keyboard.append(refresh_button)
@@ -58,6 +58,33 @@ async def start(bot, m):
     keyboard.append(refresh_button)
     #await bot.send_message(chat_id=id, text="Which one?", reply_markup=InlineKeyboardMarkup(keyboard))
     await m.reply_text(text="Which one?", reply_markup=InlineKeyboardMarkup(keyboard))
+
+
+@Client.on_callback_query()
+async def callback(bot, update):
+    #global chatid
+    #global msgid
+    #global previous_cut_time
+    if update.data == "refresh":
+        keyboard = []
+        keyboard.append(refresh_button)
+        try:
+            for file in glob.glob(vdir):
+                keyboard.append(
+                    [
+                        InlineKeyboardButton(
+                            text=file.rsplit('/', 1)[1].replace('1aa\\', ''),
+                            callback_data=file.rsplit('/', 1)[1].replace('1aa\\', '')
+                        )
+                    ]
+                )
+        except Exception as e:
+            print(e)
+            return
+        keyboard.append(refresh_button)
+        await update.message.edit(text="Which one?", reply_markup=InlineKeyboardMarkup(keyboard))
+        return
+
 
 @bot.on_message(filters.audio | filters.video | filters.document)
 async def callback(bot, m):
@@ -101,4 +128,3 @@ async def callback(bot, m):
     except Exception as e:
         print(e)
 
-bot.run()
