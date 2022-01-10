@@ -90,7 +90,6 @@ async def callback(bot, update):
     media = m.audio or m.video or m.document
     vname = media.file_name
     try:
-        await m.reply("downloading..")
         #v = folder + '/' + vname
         #vname = vname.replace('.ts', '.mp4')
         
@@ -98,11 +97,11 @@ async def callback(bot, update):
         title = n['title'].replace("-", " ")
         au2_1 = f'C:/All Projact Primer Pro/Audio Sound Serial Primer Pro Tag/{title}/2.1.mp3'
         
-        t2t = await m.reply_text('تایم صوت 2 (2.2 + 2.1) رو بفرست')
+        t2t = await update.message.reply_text('تایم صوت 2 (2.2 + 2.1) رو بفرست')
         t22: Message = await bot.listen(m.chat.id, filters=filters.text)
-        t3t = await m.reply_text('تایم صوت 3 رو بفرست\n3.mp3')
+        t3t = await update.message.reply_text('تایم صوت 3 رو بفرست\n3.mp3')
         t33: Message = await bot.listen(m.chat.id, filters=filters.text)
-        t6t = await m.reply_text('تایم صوت 6 رو بفرست\n6.mp3')
+        t6t = await update.message.reply_text('تایم صوت 6 رو بفرست\n6.mp3')
         t66: Message = await bot.listen(m.chat.id, filters=filters.text)
         t2 = int(gettime(t22.text))
         t3_1, t3_2, t3_3, t3_4, t3_5 = t33.text.split()
@@ -112,15 +111,19 @@ async def callback(bot, update):
         t3_4 = int(gettime(t3_4))
         t3_5 = int(gettime(t3_5))
         t6 = int(gettime(t66.text))
+        prccs=await update.message.reply_text("processing..")
         os.system(f'ffmpeg -i "{au2_1}" -i 2.2.mp3 -y 2.mp3')
         os.system(f'ffmpeg -i "{file}" -vn -i {a1} -vn -i {a2} -vn -i {a3} -vn -i {a6} -vn -filter_complex "[1]adelay=00000|00000[b]; [2]adelay={t2}|{t2}[c]; [3]adelay={t3_1}|{t3_1}[d]; [3]adelay={t3_2}|{t3_2}[e]; [3]adelay={t3_3}|{t3_3}[f]; [3]adelay={t3_4}|{t3_4}[g]; [3]adelay={t3_5}|{t3_5}[h]; [4]adelay={t6}|{t6}[i]; [0][b][c][d][e][f][g][h][i]amix=9" -c:a aac -b:a 125k -y {aac}')   
         time.sleep(10)
         #os.system(f'ffmpeg -i "{file}" -i {aac} -c copy -map 0:0 -map 1:0 -y "{vname}"')
         await m.reply_audio(audio=aac)
-        try:
-            os.remove(file)
-        except:
-            pass
+        await prccs.delete()
+        await t66.delete(True)
+        await t22.delete(True)
+        await t33.delete(True)
+        await t2t.delete()
+        await t6t.delete()
+        await t3t.delete()
     except Exception as e:
         print(e)
 
