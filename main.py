@@ -33,12 +33,6 @@ def gettime(t2):
         t2 = f'{t2}000'
     return t2
 
-    t2 = sum(x * int(t) for x, t in zip([1, 60, 3600], reversed(t2.split(":"))))
-    if tt2 != None:
-        t2 = f'{t2}{tt2[:1]}00'
-    else:
-        t2 = f'{t2}000'
-    return t2
 
 @bot.on_message(filters.audio | filters.video | filters.document)
 async def callback(bot, m):
