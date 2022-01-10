@@ -38,7 +38,7 @@ def gettime(t2):
     return t2
 
 @Client.on_message(filters.text & filters.regex('/voicetag'))
-async def start(bot, m):
+async def stt(bot, m):
     keyboard = []
     keyboard.append(refresh_button)
     try:
@@ -83,7 +83,7 @@ async def callback(bot, update):
         keyboard.append(refresh_button)
         await update.message.edit(text="Which one?", reply_markup=InlineKeyboardMarkup(keyboard))
         return
-    tmp = 'khorooji_voicetag/'
+    tmp = 'khorooji/'
     if not os.path.isdir(tmp):
         os.makedirs(tmp)
     input = folder + "/" + update.data
@@ -107,12 +107,12 @@ async def callback(bot, update):
         t3_4 = int(gettime(t3_4))
         t3_5 = int(gettime(t3_5))
         t6 = int(gettime(t66.text))
-        prccs=await update.message.reply_text("processing..")
+        prccs = await update.message.reply_text("processing..")
         os.system(f'ffmpeg -i "{au2_1}" -i 2.2.mp3 -y 2.mp3')
         os.system(f'ffmpeg -i "{input}" -vn -i {a1} -vn -i {a2} -vn -i {a3} -vn -i {a6} -vn -filter_complex "[1]adelay=00000|00000[b]; [2]adelay={t2}|{t2}[c]; [3]adelay={t3_1}|{t3_1}[d]; [3]adelay={t3_2}|{t3_2}[e]; [3]adelay={t3_3}|{t3_3}[f]; [3]adelay={t3_4}|{t3_4}[g]; [3]adelay={t3_5}|{t3_5}[h]; [4]adelay={t6}|{t6}[i]; [0][b][c][d][e][f][g][h][i]amix=9" -c:a aac -b:a 125k -y {aac}')   
         time.sleep(10)
-        #os.system(f'ffmpeg -i "{file}" -i {aac} -c copy -map 0:0 -map 1:0 -y "{vname}"')
-        await m.reply_audio(audio=aac)
+        os.system(f'ffmpeg -i "{input}" -i {aac} -c copy -map 0:0 -map 1:0 -y "{tmp}{vname}"')
+        await update.message.reply_text(f"Done. Check {tmp}{vname}")
         await prccs.delete()
         await t66.delete(True)
         await t22.delete(True)
