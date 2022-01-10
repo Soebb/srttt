@@ -107,11 +107,11 @@ async def callback(bot, update):
         au2_1 = f'C:/All Projact Primer Pro/Audio Sound Serial Primer Pro Tag/{title}/2.1.mp3'
         
         t2t = await update.message.reply_text('تایم واسه تگ صوت 2 (2.2 + 2.1) رو بفرست')
-        t22: Message = await bot.listen(m.chat.id, filters=filters.text)
+        t22: Message = await bot.listen(update.message.chat.id, filters=filters.text)
         t3t = await update.message.reply_text('پنج تا تایم واسه تگ صوت سوم رو بفرست\n3.mp3')
-        t33: Message = await bot.listen(m.chat.id, filters=filters.text)
+        t33: Message = await bot.listen(update.message.chat.id, filters=filters.text)
         t6t = await update.message.reply_text('تایم واسه تگ صوت 6 رو بفرست\n6.mp3')
-        t66: Message = await bot.listen(m.chat.id, filters=filters.text)
+        t66: Message = await bot.listen(update.message.chat.id, filters=filters.text)
         t2 = int(gettime(t22.text))
         t3_1, t3_2, t3_3, t3_4, t3_5 = t33.text.split()
         t3_1 = int(gettime(t3_1))
@@ -127,6 +127,12 @@ async def callback(bot, update):
         os.system(f'ffmpeg -i "{input}" -i {aac} -c copy -map 0:0 -map 1:0 -y "{tmp}{vname}"')
         #await update.message.reply_text(f"Done. Check {tmp}{vname}")
         await bot.send_video(chat_id=update.message.chat.id, video=tmp+vname, caption=f"also saved in {tmp}{vname}")
+        ask = await update.message.reply_text('remove output in system?\n /yes or /no')
+        ans: Message = await bot.listen(update.message.chat.id, filters=filters.text)
+        if "yes" in ans.text:
+            os.remove(tmp+vname)
+        ans.delete(True)
+        ask.delete()
         await prccs.delete()
         await t66.delete(True)
         await t22.delete(True)
