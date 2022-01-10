@@ -46,8 +46,8 @@ async def start(bot, m):
             keyboard.append(
                 [
                     InlineKeyboardButton(
-                        text=file.rsplit('/', 1)[1].replace('1aa\\', ''),
-                        callback_data=file.rsplit('/', 1)[1].replace('1aa\\', '')
+                        text=file.rsplit('/', 1)[1].replace(main, ''),
+                        callback_data=file.rsplit('/', 1)[1].replace(main, '')
                     )
                 ]
             )
@@ -72,8 +72,8 @@ async def callback(bot, update):
                 keyboard.append(
                     [
                         InlineKeyboardButton(
-                            text=file.rsplit('/', 1)[1].replace('1aa\\', ''),
-                            callback_data=file.rsplit('/', 1)[1].replace('1aa\\', '')
+                            text=file.rsplit('/', 1)[1].replace(main, ''),
+                            callback_data=file.rsplit('/', 1)[1].replace(main, '')
                         )
                     ]
                 )
@@ -86,9 +86,7 @@ async def callback(bot, update):
 
     if not os.path.isdir('temp/'):
         os.makedirs('temp/')
-    file = await bot.download_media(message=m, file_name='temp/')
-    media = m.audio or m.video or m.document
-    vname = media.file_name
+    input = folder + "/" + update.data
     try:
         #v = folder + '/' + vname
         #vname = vname.replace('.ts', '.mp4')
