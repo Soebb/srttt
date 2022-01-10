@@ -131,8 +131,8 @@ async def callback(bot, update):
         ans: Message = await bot.listen(update.message.chat.id, filters=filters.text)
         if "yes" in ans.text:
             os.remove(tmp+vname)
-        ans.delete(True)
-        ask.delete()
+        await ans.delete(True)
+        await ask.delete()
         await prccs.delete()
         await t66.delete(True)
         await t22.delete(True)
