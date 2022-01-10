@@ -5,6 +5,19 @@ import PTN
 import shutil
 from pyromod import listen
 
+BOT_TOKEN = " "
+API_ID = " "
+API_HASH = " "
+
+
+Bot = Client(
+    ":memory:",
+    bot_token = BOT_TOKEN,
+    api_id = API_ID,
+    api_hash = API_HASH
+)
+
+
 folder = 'C:/Users/Administrator/Downloads/Telegram Desktop'
 msgid = 0
 chatid = 0
@@ -37,7 +50,7 @@ def gettime(t2):
         t2 = f'{t2}000'
     return t2
 
-@Client.on_message(filters.text & filters.regex('/voicetag'))
+@Bot.on_message(filters.text)
 async def stt(bot, m):
     keyboard = []
     keyboard.append(refresh_button)
@@ -59,7 +72,7 @@ async def stt(bot, m):
     await m.reply_text(text="Which one?", reply_markup=InlineKeyboardMarkup(keyboard))
 
 
-@Client.on_callback_query()
+@Bot.on_callback_query()
 async def callback(bot, update):
     #global chatid
     #global msgid
@@ -123,3 +136,4 @@ async def callback(bot, update):
     except Exception as e:
         print(e)
 
+Bot.run()
