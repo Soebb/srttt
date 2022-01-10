@@ -3,7 +3,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 import PTN
 import shutil
-
+from pyromod import listen
 
 folder = 'C:/Users/Administrator/Downloads/Telegram Desktop'
 msgid = 0
