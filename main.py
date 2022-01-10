@@ -1,4 +1,3 @@
-from pydub import AudioSegment
 import os, time, glob, datetime
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
@@ -85,9 +84,6 @@ async def callback(bot, update):
         await update.message.edit(text="Which one?", reply_markup=InlineKeyboardMarkup(keyboard))
         return
 
-
-@bot.on_message(filters.audio | filters.video | filters.document)
-async def callback(bot, m):
     if not os.path.isdir('temp/'):
         os.makedirs('temp/')
     file = await bot.download_media(message=m, file_name='temp/')
