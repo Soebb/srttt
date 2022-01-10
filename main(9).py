@@ -11,10 +11,6 @@ if 'BOT_TOKEN' in os.environ:
     BOT_TOKEN = os.environ.get("BOT_TOKEN")
     API_ID = os.environ.get("API_ID")
     API_HASH = os.environ.get("API_HASH")
-else:
-    BOT_TOKEN = "2097075744:AAEoJN9kufairh1wNseDI-N_eXqvxcnZSfw"
-    API_ID = "4328913"
-    API_HASH = "3230ec801f78a517c9a2ad6bebb7f7b4"
 
 
 Bot = Client(
