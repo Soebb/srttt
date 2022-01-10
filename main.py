@@ -6,18 +6,6 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 import PTN
 import shutil
 
-BOT_TOKEN = "5011115624:AAEDtnMcl3rXM9u-d-Su_YnHcilMyNcNPNw"
-API_ID = "4328913"
-API_HASH = "3230ec801f78a517c9a2ad6bebb7f7b4"
-
-
-bot = Client(
-    "Bot",
-    bot_token = BOT_TOKEN,
-    api_id = API_ID,
-    api_hash = API_HASH
-)
-
 
 folder = 'C:/Users/Administrator/Downloads/Telegram Desktop'
 msgid = 0
