@@ -10,12 +10,11 @@ BOT_TOKEN = " "
 folder = 'C:/Users/Administrator/Downloads/Telegram Desktop'
 msgid1 = msgid2 = 0
 vdir = folder + '/*'
-dir = 'C:/voicetag/'
-a1 = dir + '1.mp3'
-a2 = dir + '2.mp3'
-a3 = dir + '3.mp3'
-a6 = dir + '6.mp3'
-aac = dir + 'a.aac'
+a1 = '1.mp3'
+a2 = '2.mp3'
+a3 = '3.mp3'
+a6 = '6.mp3'
+aac = 'a.aac'
 main = folder.rsplit('/', 1)[1] + '\\'
 texxt = None
 refresh_button = [
@@ -108,18 +107,9 @@ def button(update: Update, context: CallbackContext) -> None:
                 #ext = '.' + file.rsplit('.', 1)[1]
                 v = folder + '/' + vname
                 vname = vname.replace('.ts', '.mp4')
-                try:
-                    os.remove(a2)
-                except:
-                    pass
-                try:
-                    os.remove(dir + '2.1.mp3')
-                except:
-                    pass
                 n = PTN.parse(vname)
                 title = n['title'].replace("-", " ")
                 au2_1 = f'C:/All Projact Primer Pro/Audio Sound Serial Primer Pro Tag/{title}/2.1.mp3'
-
                 t2, t3_1, t3_2, t3_3, t3_4, t3_5, t6 = texxt.split()
                 t3_1 = gettime(t3_1)
                 t3_2 = gettime(t3_2)
