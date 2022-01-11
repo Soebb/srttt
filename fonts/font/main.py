@@ -930,8 +930,12 @@ async def caption(bot, message):
                 Fuc = f"{Fucc}{q.replace('  ', ' ')} \n🆔👉 @dlmacvin_new | {fa}"
                 msg = await message.edit(Fuc)
             else:
-                if X in ["O Ses Turkiye", "Maske Kimsin Sen"]:
+                if X == "O Ses Turkiye":
                     Fucc += f"♨️مسابقه{fa} ( {n}) بازیرنویس چسبیده\n👌قسمت : {E.replace('Hard-Sub', '')}"
+                    Fuc = f"{Fucc}{q.replace('  ', ' ')} \n🔻تماشای آنلاین بدون فیلتر شکن: \n🆔👉 @dlmacvin_new"
+                    msg = await message.edit(Fuc)
+                elif X == "Maske Kimsin Sen":
+                    Fucc += f"♨️برنامه{fa} ( {n}) بازیرنویس چسبیده\n👌قسمت : {E.replace('Hard-Sub', '')}"
                     Fuc = f"{Fucc}{q.replace('  ', ' ')} \n🔻تماشای آنلاین بدون فیلتر شکن: \n🆔👉 @dlmacvin_new"
                     msg = await message.edit(Fuc)
                 else:
