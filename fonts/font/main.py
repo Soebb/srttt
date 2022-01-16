@@ -50,9 +50,7 @@ async def start(bot, m):
 
 @Bot.on_callback_query()
 async def callback(bot, update):
-    global chatid
-    global msgid
-    global previous_cut_time
+    global chatid, msgid, previous_cut_time
     if update.data == "refresh":
         keyboard = []
         keyboard.append(refresh_button)
