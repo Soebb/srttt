@@ -6,16 +6,9 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 
 previous_cut_time = '02:00:04'
 
-
-if 'BOT_TOKEN' in os.environ:
-    BOT_TOKEN = os.environ.get("BOT_TOKEN")
-    API_ID = os.environ.get("API_ID")
-    API_HASH = os.environ.get("API_HASH")
-else:
-    BOT_TOKEN = "2097075744:AAEoJN9kufairh1wNseDI-N_eXqvxcnZSfw"
-    API_ID = "4328913"
-    API_HASH = "3230ec801f78a517c9a2ad6bebb7f7b4"
-
+BOT_TOKEN = " "
+API_ID = " "
+API_HASH = " "
 
 Bot = Client(
     ":memory:",
@@ -77,7 +70,7 @@ async def callback(bot, update):
             print(e)
             return
         keyboard.append(refresh_button)
-        await update.message.edit(text="Which one?", reply_markup=InlineKeyboardMarkup(keyboard))
+        await update.message.edit(text=f"Which one of these {len(keyboard)} videos?", reply_markup=InlineKeyboardMarkup(keyboard))
         return
     try:
         for file in glob.glob('C:/dlmacvin/1aa/*'):
