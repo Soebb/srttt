@@ -74,6 +74,7 @@ async def callback(bot, update):
         for file in glob.glob('C:/dlmacvin/1aa/*'):
             if file.rsplit('/', 1)[1].replace('1aa\\', '') == update.data:
                 name = file.rsplit('/', 1)[1].replace('1aa\\', '')
+                input = 'C:/dlmacvin/1aa/' + name
                 process_msg = await update.message.reply_text('Processing..')
                 ext = '.' + file.rsplit('.', 1)[1]
                 out = 'C:/dlmacvin/1aa/videos/'+name
