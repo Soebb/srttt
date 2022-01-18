@@ -71,24 +71,22 @@ async def callback(bot, update):
             await update.message.reply_text("error!! Send /start")
         return
     try:
-        for file in glob.glob('C:/dlmacvin/1aa/*'):
-            if file.rsplit('/', 1)[1].replace('1aa\\', '') == update.data:
-                name = file.rsplit('/', 1)[1].replace('1aa\\', '')
-                input = 'C:/dlmacvin/1aa/' + name
-                process_msg = await update.message.reply_text('Processing..')
-                ext = '.' + file.rsplit('.', 1)[1]
-                out = 'C:/dlmacvin/1aa/videos/'+name
-                os.system(f'''ffmpeg -ss 00:00:00 -i "{input}" -to 00:20:00 -c copy "{out}"''')
-                await process_msg.delete()
-                if chatid == 0:
-                    msg = await update.message.reply_text('Done! ' + out)
-                    msgid = msg.message_id
-                elif chatid != 0:
-                    try:
-                        await bot.edit_message_text(update.message.chat.id, msgid, 'Done! ' + out)
-                    except:
-                        await bot.edit_message_text(update.message.chat.id, msgid, 'تمام')
-                chatid = update.message.from_user.id
+        name = update.data
+        input = 'C:/dlmacvin/1aa/' + name
+        process_msg = await update.message.reply_text('Processing..')
+        ext = '.' + file.rsplit('.', 1)[1]
+        out = 'C:/dlmacvin/1aa/videos/'+name
+        os.system(f'''ffmpeg -ss 00:00:00 -i "{input}" -to 00:20:00 -c copy "{out}"''')
+        await process_msg.delete()
+        if chatid == 0:
+            msg = await update.message.reply_text('Done! ' + out)
+            msgid = msg.message_id
+        elif chatid != 0:
+            try:
+                await bot.edit_message_text(update.message.chat.id, msgid, 'Done! ' + out)
+            except:
+                await bot.edit_message_text(update.message.chat.id, msgid, 'تمام')
+        chatid = update.message.from_user.id
 
     except:
         pass
