@@ -74,7 +74,7 @@ async def callback(bot, update):
         name = update.data
         input = 'C:/dlmacvin/1aa/' + name
         process_msg = await update.message.reply_text('Processing..')
-        ext = '.' + file.rsplit('.', 1)[1]
+        ext = '.' + name.rsplit('.', 1)[1]
         out = 'C:/dlmacvin/1aa/videos/'+name
         os.system(f'''ffmpeg -ss 00:00:00 -i "{input}" -to 00:20:00 -c copy "{out}"''')
         await process_msg.delete()
