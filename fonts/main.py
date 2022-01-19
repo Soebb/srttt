@@ -118,8 +118,8 @@ async def callback(bot, update):
             except:
                 await bot.edit_message_text(update.message.chat.id, msgid, 'تمام')
         chatid = update.message.from_user.id
-    except:
-        pass
+    except Exception as e:
+        print(e)
 
 
 
