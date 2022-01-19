@@ -2,7 +2,8 @@ import os, datetime, glob, subprocess, json
 from pyrogram import Client, filters
 from pyromod import listen
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
-
+from hachoir.parser import createParser
+from hachoir.metadata import extractMetadata
 
 previous_cut_time = '02:00:04'
 
@@ -83,9 +84,8 @@ async def callback(bot, update):
     try:
         name = update.data
         input = 'C:/dlmacvin/1aa/' + name
-        video_info = subprocess.check_output(f'ffprobe -v quiet -show_streams -select_streams v:0 -of json "{input}"', shell=True).decode()
-        fields = json.loads(video_info)['streams'][0]
-        duration = int(fields['duration'].split(".")[0])
+        metadata = extractMetadata(createParser(input))
+        duration = int(metadata.get('duration').seconds)
         dtime = str(datetime.timedelta(seconds=duration))[:11]
         ask = await update.message.reply_text(f'تایم کل ویدیو : {dtime} \n\nجهت کات ویدیو تایم را به این صورت ارسال کنید \n 00:00:00 02:10:00 \n\nOr send /previous to keep the previous cut time.')
         time: Message = await bot.listen(update.message.chat.id, filters=filters.text)
