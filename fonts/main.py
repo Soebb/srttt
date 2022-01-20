@@ -52,7 +52,6 @@ async def start(bot, m):
         print(e)
         return
     keyboard.append(refresh_button)
-    #await bot.send_message(chat_id=id, text="Which one?", reply_markup=InlineKeyboardMarkup(keyboard))
     await m.reply_text(text="Which one?", reply_markup=InlineKeyboardMarkup(keyboard))
 
 
