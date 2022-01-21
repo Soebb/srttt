@@ -98,7 +98,7 @@ async def callback(bot, update):
         await ask.delete()
         process_msg = await update.message.reply_text('Processing..')
         ext = '.' + name.rsplit('.', 1)[1]
-        end_sec = sum(x * int(t) for x, t in zip([1, 60, 3600], reversed(end.split(":"))))
+        end_sec = sum(x * int(t) for x, t in zip([1, 60, 3600], reversed(end)))
         os.system(f'''ffmpeg -ss {start} -i "{input}" -to {end} -c copy "C:/dlmacvin/1aa/videos/{name.replace(ext, '-0'+ext)}"''')
         cut_steps = []
         dif = duration - int(end_sec)
